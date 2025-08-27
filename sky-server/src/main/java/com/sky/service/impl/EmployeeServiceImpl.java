@@ -76,11 +76,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         //2.进行基础属性补全
         employee.setStatus(StatusConstant.ENABLE);
         employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
-        //通过ThreadLocal拿到当前登陆用户的id
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
 
         //3. 调用mapper接口,进行数据插入
         employeeMapper.insert(employee);
@@ -142,9 +137,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDTO,employee);
 
-        //2. 进行基础属性补全
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(BaseContext.getCurrentId());
         //2. 调用mapper接口
         employeeMapper.update(employee);
 

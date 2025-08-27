@@ -52,10 +52,6 @@ public class CategoryServiceImpl implements CategoryService {
 
         //2. 进行基础属性补全
         category.setStatus(StatusConstant.ENABLE);
-        category.setCreateTime(LocalDateTime.now());
-        category.setUpdateTime(LocalDateTime.now());
-        category.setCreateUser(BaseContext.getCurrentId());
-        category.setUpdateUser(BaseContext.getCurrentId());
 
         //3. 调用mapper接口
         categoryMapper.insert(category);
